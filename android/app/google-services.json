@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "187387234416",
+    "firebase_url": "https://captainearth-a993d.firebaseio.com",
+    "project_id": "captainearth-a993d",
+    "storage_bucket": "captainearth-a993d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187387234416:android:f5ff1913b78cde582e0cb5",
+        "android_client_info": {
+          "package_name": "com.example.captain_earth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187387234416-v55aovo95kvdmc8cjumve56oqc70s6gj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgLfW-bshG2SrEDsgFFGrdnaFNhW1HZ4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187387234416-v55aovo95kvdmc8cjumve56oqc70s6gj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
