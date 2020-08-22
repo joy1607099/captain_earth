@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:captain_earth/components/rounded_button.dart';
 import 'package:captain_earth/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'chat_screen.dart';
+import 'package:captain_earth/screens/task_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: Color(0xff28b485),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -35,15 +35,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-                    child: Image.asset('images/ninja.png'),
+                    child: Image.asset('images/mascot.png'),
                   ),
                 ),
               ),
               SizedBox(
-                height: 48.0,
+                height: 40.0,
               ),
               TextField(
+
                 keyboardType: TextInputType.emailAddress,
+                style: TextStyle(
+
+                  color: Colors.white,
+                ),
                 textAlign: TextAlign.center,
                 onChanged: (value) {
                   email = value;
@@ -77,7 +82,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
                     if (newUser != null) {
-//                      Navigator.pushNamed(context, ChatScreen.id);
+                      Navigator.pushNamed(context, TaskScreen.id);
                     }
 
                     setState(() {

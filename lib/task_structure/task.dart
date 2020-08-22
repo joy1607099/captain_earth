@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class Task {
 
-  int taskId;
+  String taskId;
   int points;
   String taskTitle;
   String description;

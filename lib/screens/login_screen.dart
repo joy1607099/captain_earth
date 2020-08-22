@@ -1,8 +1,10 @@
+import 'package:captain_earth/screens/task_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:captain_earth/components/rounded_button.dart';
 import 'package:captain_earth/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -16,10 +18,19 @@ class _LoginScreenState extends State<LoginScreen> {
   String email;
   String password;
 
+  final myEmailController = TextEditingController();
+//  final myPasswordController = TextEditingController();
+  @override
+  void dispose() {
+    myEmailController.dispose();
+//    myPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.tealAccent,
+      backgroundColor: Color(0xff28b485),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -33,36 +44,49 @@ class _LoginScreenState extends State<LoginScreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-                    child: Image.asset('images/ninja.png'),
+                    child: Image.asset('images/mascot.png'),
                   ),
                 ),
               ),
               SizedBox(
-                height: 48.0,
+                height: 40.0,
               ),
               TextField(
+                controller: myEmailController,
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
                   email = value;
                 },
                 decoration:
-                    kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+                    kTextFieldDecoration.copyWith(
+                        hintText: 'Enter your email',
+                        fillColor: Colors.white70,
+                        hoverColor:  Colors.white70,
+                        focusColor:  Colors.white,
+                    ),
               ),
               SizedBox(
                 height: 8.0,
               ),
               TextField(
+//                controller: myPasswordController,
                 obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
                   password = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your password'),
+                    hintText: 'Enter your password',
+                    fillColor: Colors.white70,
+                    hoverColor:  Colors.white70,
+                    focusColor:  Colors.white,
+
+
+                ),
               ),
               SizedBox(
-                height: 24.0,
+                height: 50.0,
               ),
               RoundedButton(
                 title: 'Log In',
@@ -75,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     final user = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
                     if (user != null) {
-//                      Navigator.pushNamed(context, ChatScreen.id);
+                      Navigator.pushNamed(context, TaskScreen.id);
                     }
 
                     setState(() {

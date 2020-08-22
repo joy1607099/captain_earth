@@ -1,5 +1,6 @@
 import 'package:captain_earth/screens/login_screen.dart';
 import 'package:captain_earth/screens/registration_screen.dart';
+import 'package:captain_earth/screens/task_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -39,10 +40,10 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-
+  
     controller =
         AnimationController(duration: Duration(seconds: 1), vsync: this);
-    animation = ColorTween(begin: Colors.tealAccent, end: Colors.teal)
+    animation = ColorTween(begin: Color(0xff7ed56f), end: Color(0xff28b485))
         .animate(controller);
     controller.forward();
     controller.addListener(() {
@@ -61,77 +62,79 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
     return Scaffold(
       backgroundColor: animation.value,
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(top: 150.0),
-              child: Center(
-                  child: TypewriterAnimatedTextKit(
-                    speed: Duration(milliseconds: 500),
-                    repeatForever: true, //this will ignore [totalRepeatCount]
-                    pause: Duration(milliseconds:  1000),
-                    text: ['Captain Earth'],
-                    textStyle: TextStyle(
-                      fontFamily: 'Source Sans Pro',
-                      fontSize: 50.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 2.5,
-                    ),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 100.0,
+              ),
+              Hero(
+                tag: 'logo',
+                child: Container(
+                  height: 200.0,
+                  child: Image.asset('images/mascot.png'),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Hero(
-              tag: 'logo',
-              child: CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('images/ninja.png'),
+              SizedBox(
+                height: 20.0,
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Text(
-              'Be the change',
-              style: TextStyle(
-                fontFamily: 'Pacifico',
-                color: Colors.teal.shade100,
-                fontSize: 20.0,
-                letterSpacing: 2.5,
-                fontWeight: FontWeight.bold,
+//            Center(
+//              child: TypewriterAnimatedTextKit(
+//                speed: Duration(milliseconds: 500),
+//                repeatForever: true, //this will ignore [totalRepeatCount]
+//                pause: Duration(milliseconds:  1000),
+//                text: ['Captain Earth'],
+//                textStyle: TextStyle(
+//                  fontFamily: 'RussoOne',
+//                  fontSize: 30.0,
+//                  color: Colors.white,
+//                  fontWeight: FontWeight.w900,
+//                  letterSpacing: 2.5,
+//                ),
+//              ),
+//            ),
+              Text(
+                'Be the change',
+                style: TextStyle(
+                  fontFamily: 'Pacifico',
+                  color: Colors.teal.shade100,
+                  fontSize: 20.0,
+                  letterSpacing: 2.5,
+                  fontWeight: FontWeight.bold,
+                ),
+
               ),
+              SizedBox(
+                height: 40.0,
+              ),
+              RoundedButton(
+                title: 'Log In',
+                colour: Colors.lightBlueAccent,
+                onPressed: () {
+                  Navigator.pushNamed(context,LoginScreen.id );
+                },
+              ),
+              RoundedButton(
+                title: 'Register',
+                colour: Colors.blueAccent,
+                onPressed: () {
+                  Navigator.pushNamed(context, RegistrationScreen.id);
+                },
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              RoundedButton(
+                title:'Sign in with Facebook',
+                colour: Colors.blueGrey,
+                onPressed: () {
+                  _signInFacebook();
+                  Navigator.pushNamed(context, TaskScreen.id);
+                },
+              ),
+            ],
 
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            RoundedButton(
-              title: 'Log In',
-              colour: Colors.lightBlueAccent,
-              onPressed: () {
-                Navigator.pushNamed(context,LoginScreen.id );
-              },
-            ),
-            RoundedButton(
-              title: 'Register',
-              colour: Colors.blueAccent,
-              onPressed: () {
-                Navigator.pushNamed(context, RegistrationScreen.id);
-              },
-            ),
-            RoundedButton(
-              title:'Sign in with Facebook',
-              colour: Colors.blueGrey,
-              onPressed: () {
-                _signInFacebook();
-//                Navigator.pushNamed(context, RegistrationScreen.id);
-              },
-            ),
-          ],
-
+          ),
         ),
       ),
     );
